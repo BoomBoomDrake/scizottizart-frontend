@@ -15,7 +15,7 @@ function App() {
   // const [commissions, setCommissions] = React.useState(["Test", "Commissions"])
 
   const commonProps = {}
-  const categories = {animals, sketches, celebrities}
+  const categories = [animals, sketches, celebrities]
 
   const router = createBrowserRouter([
     {
@@ -24,7 +24,7 @@ function App() {
       children: [
         {
           path: "/", 
-          element: <HomePage />,
+          element: <HomePage categories={categories}/>,
         },
         {
           path: "/animals",
@@ -44,9 +44,9 @@ function App() {
 
 
   return (
-    <div className="App">
-      
-    </div>
+    <React.Fragment>
+      <RouterProvider router={router} />
+    </React.Fragment>
   );
 }
 

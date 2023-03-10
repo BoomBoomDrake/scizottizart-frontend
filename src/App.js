@@ -14,8 +14,47 @@ function App() {
   // Disabled until client gets commision work
   // const [commissions, setCommissions] = React.useState(["Test", "Commissions"])
 
+  React.useEffect(() => {
+    getAnimals();
+    getSketches();
+    getCelebrities();
+  }, []);
+
   const commonProps = {}
   const categories = [animals, sketches, celebrities]
+
+  async function getAnimals() {
+    ItemDataService.getItemsByCategory("Animals")
+      .then(response => {
+        console.log(response.data.items)
+        setAnimals(response.data.items)
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
+
+  async function getSketches() {
+    ItemDataService.getItemsByCategory("Sketches")
+      .then(response => {
+        console.log(response.data.items)
+        setSketches(response.data.items)
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
+
+  async function getCelebrities() {
+    ItemDataService.getItemsByCategory("Celebrities")
+      .then(response => {
+        console.log(response.data.items)
+        setCelebrities(response.data.items)
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
 
   const router = createBrowserRouter([
     {

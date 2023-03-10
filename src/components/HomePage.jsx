@@ -23,11 +23,11 @@ export default function HomePage({categories}) {
     function scrollToTarget() {
         setTimeout(() => {
             if(!state) return
-            if(state.ref == "works") {
+            if(state.ref === "works") {
                 worksTargetRef.current.scrollIntoView({
                     behavior: "smooth"
                 })
-            } else if (state.ref == "about") {
+            } else if (state.ref === "about") {
                 aboutTargetRef.current.scrollIntoView({
                     behavior: "smooth"
                 })
@@ -64,7 +64,7 @@ export default function HomePage({categories}) {
                     </div>
                 </div>
                 <h1 id="works" ref={worksTargetRef} className="pt-5">my works</h1>
-                <div className="container border">
+                <div className="container border border-2 border-dark pb-5 mb-5">
                     <div className="container d-flex justify-content-between py-5">
                         <div className="col-5 align-self-center">
                             <img src={physicalExamples} alt="physical-examples" className="w-100"/>
@@ -102,21 +102,30 @@ export default function HomePage({categories}) {
                     {categories.map((category) => {
                         return( categories.indexOf(category) % 2 === 0 ? (
                             <div key={categories.indexOf(category)} className="container d-flex justify-content-around my-5">
-                                <div className="col-4 border d-flex flex-column justify-content-center">
-                                    <h3>{category[1]}</h3>
+                                <div className="col-4 d-flex flex-column justify-content-center">
+                                    <h3>{category[1].category}</h3>
                                     <p>Brief description about category</p>
                                     <a href="/animals">View All</a>
                                 </div>
                                 <div id={"category" + categories.indexOf(category) + "carouselControl"} className="carousel slide col-6 border" data-bs-ride="carousel">
                                     <div className="carousel-inner bg-dark">
-                                        <div className="carousel-item active">
-                                        <img src="https://picsum.photos/200/300" className=" d-block m-auto" alt="preview" />
+                                        <div className="carousel-item row active">
+                                            <div className="container col-4 mb-3" style={{height: 250 + "px"}}>
+                                                <img src={category[0].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                                <h4 className="text-white text-center my-2">{category[0].name}</h4>
+                                            </div>
                                         </div>
-                                        <div className="carousel-item">
-                                        <img src="https://picsum.photos/200/300" className=" d-block m-auto" alt="preview" />
+                                        <div className="carousel-item row">
+                                            <div className="container col-4 mb-3" style={{height: 250 + "px"}}>
+                                                <img src={category[1].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                                <h4 className="text-white text-center my-2">{category[1].name}</h4>
+                                            </div>
                                         </div>
-                                        <div className="carousel-item">
-                                        <img src="https://picsum.photos/200/300" className=" d-block m-auto" alt="preview" />
+                                        <div className="carousel-item row">
+                                            <div className="container col-4 mb-3" style={{height: 250 + "px"}}>
+                                                <img src={category[2].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                                <h4 className="text-white text-center my-2">{category[2].name}</h4>
+                                            </div>
                                         </div>
                                     </div>
                                     <button className="carousel-control-prev" type="button" data-bs-target={"#category" + categories.indexOf(category) + "carouselControl"} data-bs-slide="prev">
@@ -132,17 +141,26 @@ export default function HomePage({categories}) {
                             ) : (
                                 <div key={categories.indexOf(category)} className="container d-flex justify-content-around my-5">
                                     <div id={"category" + categories.indexOf(category) + "carouselControl"} className="carousel slide col-6 border" data-bs-ride="carousel">
-                                        <div className="carousel-inner bg-dark">
-                                            <div className="carousel-item active">
-                                                <img src="https://picsum.photos/200/300" className=" d-block m-auto" alt="preview" />
-                                            </div>
-                                            <div className="carousel-item">
-                                                <img src="https://picsum.photos/200/300" className=" d-block m-auto" alt="preview" />
-                                            </div>
-                                            <div className="carousel-item">
-                                                <img src="https://picsum.photos/200/300" className=" d-block m-auto" alt="preview" />
+                                    <div className="carousel-inner bg-dark">
+                                        <div className="carousel-item row active">
+                                            <div className="container col-4 mb-3" style={{height: 250 + "px"}}>
+                                                <img src={category[0].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                                <h4 className="text-white text-center my-2">{category[0].name}</h4>
                                             </div>
                                         </div>
+                                        <div className="carousel-item row">
+                                            <div className="container col-4 mb-3" style={{height: 250 + "px"}}>
+                                                <img src={category[1].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                                <h4 className="text-white text-center my-2">{category[1].name}</h4>
+                                            </div>
+                                        </div>
+                                        <div className="carousel-item row">
+                                            <div className="container col-4 mb-3" style={{height: 250 + "px"}}>
+                                                <img src={category[2].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                                <h4 className="text-white text-center my-2">{category[2].name}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
                                         <button className="carousel-control-prev" type="button" data-bs-target={"#category" + categories.indexOf(category) + "carouselControl"} data-bs-slide="prev">
                                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span className="visually-hidden">Previous</span>
@@ -152,8 +170,8 @@ export default function HomePage({categories}) {
                                             <span className="visually-hidden">Next</span>
                                         </button>
                                     </div>
-                                    <div className="col-4 border d-flex flex-column align-items-end justify-content-center">
-                                        <h3>{category[1]}</h3>
+                                    <div className="col-4 d-flex flex-column align-items-end justify-content-center">
+                                        <h3>{category[1].category}</h3>
                                         <p>Brief description about category</p>
                                         <a href="/animals">View All</a>
                                     </div>

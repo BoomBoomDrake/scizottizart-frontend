@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
@@ -11,11 +12,29 @@ import physicalExamples from "../images/physical-examples.png";
 
 export default function HomePage({categories}) {
 
+    let {state} = useLocation();
+    const worksTargetRef = React.useRef();
+    const aboutTargetRef = React.useRef();
+
     React.useEffect(() => {
-        console.log(categories.map((category) => {
-            return category[1]
-        }));
+        scrollToTarget();
     })
+
+    function scrollToTarget() {
+        setTimeout(() => {
+            if(!state) return
+            if(state.ref == "works") {
+                worksTargetRef.current.scrollIntoView({
+                    behavior: "smooth"
+                })
+            } else if (state.ref == "about") {
+                aboutTargetRef.current.scrollIntoView({
+                    behavior: "smooth"
+                })
+            }
+            
+        }, 100);
+    }
 
     return(
         <React.Fragment>
@@ -44,7 +63,7 @@ export default function HomePage({categories}) {
                         </div>
                     </div>
                 </div>
-                <h1 id="works" className="pt-5">my works</h1>
+                <h1 id="works" ref={worksTargetRef} className="pt-5">my works</h1>
                 <div className="container border">
                     <div className="container d-flex justify-content-between py-5">
                         <div className="col-5 align-self-center">
@@ -143,7 +162,7 @@ export default function HomePage({categories}) {
                         )
                     })}
                 </div>
-                <h1>about me</h1>
+                <h1 ref={aboutTargetRef}>about me</h1>
                 <div className="container border">
                     <p>About</p>
                 </div>

@@ -1,9 +1,14 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 import ContactForm from "./ContactForm";
 
 export default function Root() {
+
+    // To enable scrolling to href coming from a page other than HomePage
+    const fromNavBarState = {fromNavBar: true};
+
     return (
         <React.Fragment>
             <nav className="navbar navbar-expand-lg pt-5 pb-3">
@@ -16,10 +21,18 @@ export default function Root() {
                             <Link className="nav-link p-0 align-self-end" to="/">
                                 Home
                             </Link>
-                            <Link className="nav-link p-0 align-self-end" to="/#works">
+                            <Link 
+                                className="nav-link p-0 align-self-end"
+                                to={{ pathname: "/", hash: "#works",}}
+                                state={{ref: "works"}}
+                            >
                                 My Works
                             </Link>
-                            <Link className="nav-link p-0 align-self-end" to="/#about">
+                            <Link 
+                                className="nav-link p-0 align-self-end"
+                                to={{ pathname: "/", hash: "#about",}}
+                                state={{ref: "about"}}
+                            >
                                 About Me
                             </Link>
                             <ContactForm />

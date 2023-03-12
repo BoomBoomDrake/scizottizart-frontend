@@ -12,7 +12,7 @@ export default function Root() {
 
     return (
         <React.Fragment>
-            <nav className="navbar navbar-expand-lg fixed-top pt-4" style={{backgroundColor: "#f6e7d8"}}>
+            <nav className="navbar navbar-expand-lg fixed-top pt-4">
                 <div className="container p-0">
                     {/*span pushes navbar-toggler to right on collapse*/}
                     <span className="nav-brand"></span>
@@ -20,28 +20,36 @@ export default function Root() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div ref={navBarCollapseRef} className="navbar-nav container navbar-collapse collapse justify-content-between px-5 pt-3" id="navbarCollapse">
-                        <Link
-                            className="nav-link p-0 align-self-end"
-                            to={{ pathname: "/"}}
-                            state={{ref: "home"}}
-                        >
-                            Home    
-                        </Link>
-                        <Link
-                            className="nav-link p-0 align-self-end"
-                            to={{ pathname: "/", hash: "#works",}}
-                            state={{ref: "works"}}
-                        >
-                            My Works
-                        </Link>
-                        <Link
-                            className="nav-link p-0 align-self-end"
-                            to={{ pathname: "/", hash: "#about",}}
-                            state={{ref: "about"}}
-                        >
-                            About Me
-                        </Link>
-                        <ContactForm />
+                        <div className="nav-item">
+                            <Link
+                                className="nav-link p-0 align-self-end"
+                                to={{ pathname: "/"}}
+                                state={{ref: "home"}}
+                            >
+                                Home
+                            </Link>
+                        </div>
+                        <div className="nav-item">
+                            <Link
+                                className="nav-link p-0 align-self-end"
+                                to={{ pathname: "/", hash: "#works",}}
+                                state={{ref: "works"}}
+                            >
+                                My Works
+                            </Link>
+                        </div>
+                        <div className="nav-item">
+                            <Link
+                                className="nav-link p-0 align-self-end"
+                                to={{ pathname: "/", hash: "#about",}}
+                                state={{ref: "about"}}
+                            >
+                                About Me
+                            </Link>
+                        </div>
+                        <div className="nav-item">
+                            <ContactForm />
+                        </div>
                     </div>
                 </div>
             </nav>

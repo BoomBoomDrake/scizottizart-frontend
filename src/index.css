@@ -5,10 +5,28 @@ body {
     background-color: #f6e7d8;
 }
 
+nav {
+    background-color: #f6e7d8;
+}
+
 h1 {
     font-size: 5em;
 }
 
 .spacer {
     height: 88px;
+}
+
+@media screen and (max-width: 992px) {
+    nav {
+        background-color: transparent;
+    }
+
+    .nav-item {
+        align-self: flex-end;
+        background-color: #f6e7d8;
+        border: 1px solid grey;
+        text-align: center;
+        width: 100px;
+    }
 }

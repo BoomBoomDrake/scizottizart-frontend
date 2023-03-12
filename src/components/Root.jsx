@@ -42,7 +42,7 @@ export default function Root() {
                             </Link>
                         </div>
                         <div className="nav-item">
-                            <button href="" className="nav-link p-0 align-self-end btn" data-bs-toggle="modal" data-bs-target="#contactForm">
+                            <button className="nav-link p-0 align-self-end btn" data-bs-toggle="modal" data-bs-target="#contactForm">
                                 Contact Me
                             </button>
                         </div>

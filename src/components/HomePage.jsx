@@ -74,11 +74,11 @@ export default function HomePage(props) {
                 <span ref={worksTargetRef} className="spacer d-block"></span>
                 <h1 id="works">my works</h1>
                 <div className="container border border-2 border-dark pb-5 mb-5">
-                    <div className="container d-flex justify-content-between py-5">
-                        <div className="col-5 align-self-center">
+                    <div className="row d-flex justify-content-between py-5">
+                        <div className="col-lg-5">
                             <img src={physicalExamples} alt="physical-examples" className="w-100"/>
                         </div>
-                        <div className="col-5">
+                        <div className="col-lg-5">
                             <h2>All of my work is available for purchase in the following formats:</h2>
                             <ul>
                                 <li><h3>William Turner Paper</h3></li>
@@ -111,25 +111,25 @@ export default function HomePage(props) {
                     {props.categories.map((category) => { 
                         return(props.categories.indexOf(category) % 2 === 0 ? 
                         (
-                            <div key={props.categories.indexOf(category)} className="container d-flex justify-content-around my-3">
-                                <div className="col-4 d-flex flex-column align-items-center justify-content-center">
+                            <div key={props.categories.indexOf(category)} className="row my-3">
+                                <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
                                     <h1>{category.length === 0 ? "loading" : category[1].category}</h1>
                                     <p>Brief description about category</p>
                                     <Link to={category.length === 0 ? "#" : "/"+category[0].category}>View All</Link>
                                 </div>
-                                <div id={"category" + props.categories.indexOf(category) + "carouselControl"} className="carousel slide col-6 px-5" data-bs-ride="carousel">
+                                <div id={"category" + props.categories.indexOf(category) + "carouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
                                     <div className="carousel-inner">
                                         <div className="carousel-item active">
                                             <div className="row">
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                     <img src={category.length === 0 ? loader : category[0].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                     <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[0].name}</h4>
                                                 </div>
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                     <img src={category.length === 0 ? loader : category[1].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                     <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[1].name}</h4>
                                                 </div>
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                     <img src={category.length === 0 ? loader : category[2].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                     <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[2].name}</h4>
                                                 </div>
@@ -137,15 +137,15 @@ export default function HomePage(props) {
                                         </div>
                                         <div className="carousel-item">
                                             <div className="row">
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                     <img src={category.length === 0 ? loader : category[3].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                     <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[3].name}</h4>
                                                 </div>
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                     <img src={category.length === 0 ? loader : category[4].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                     <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[4].name}</h4>
                                                 </div>
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                     <img src={category.length === 0 ? loader : category[5].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                     <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[5].name}</h4>
                                                 </div>
@@ -163,20 +163,20 @@ export default function HomePage(props) {
                                 </div>
                             </div>
                         ) : (
-                                <div key={props.categories.indexOf(category)} className="container d-flex justify-content-around my-3">
-                                    <div id={"category" + props.categories.indexOf(category) + "carouselControl"} className="carousel slide col-6 px-5" data-bs-ride="carousel">
+                                <div key={props.categories.indexOf(category)} className="row my-3">
+                                    <div id={"category" + props.categories.indexOf(category) + "carouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
                                         <div className="carousel-inner">
                                             <div className="carousel-item active">
                                                 <div className="row">
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                         <img src={category.length === 0 ? loader : category[0].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                         <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[0].name}</h4>
                                                     </div>
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                         <img src={category.length === 0 ? loader : category[1].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                         <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[1].name}</h4>
                                                     </div>
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                         <img src={category.length === 0 ? loader : category[2].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                         <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[2].name}</h4>
                                                     </div>
@@ -184,15 +184,15 @@ export default function HomePage(props) {
                                             </div>
                                             <div className="carousel-item">
                                                 <div className="row">
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                         <img src={category.length === 0 ? loader : category[3].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                         <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[3].name}</h4>
                                                     </div>
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                         <img src={category.length === 0 ? loader : category[4].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                         <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[4].name}</h4>
                                                     </div>
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 300 + "px"}}>
+                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
                                                         <img src={category.length === 0 ? loader : category[5].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
                                                         <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[5].name}</h4>
                                                     </div>
@@ -208,7 +208,7 @@ export default function HomePage(props) {
                                             <span className="visually-hidden">Next</span>
                                         </button>
                                     </div>
-                                    <div className="col-4 d-flex flex-column align-items-center justify-content-center">
+                                    <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
                                         <h1>{category.length === 0 ? "loading" : category[1].category}</h1>
                                         <p>Brief description about category</p>
                                         <Link to={category.length === 0 ? "#" : "/"+category[0].category}>View All</Link>
@@ -221,11 +221,11 @@ export default function HomePage(props) {
                 <span ref={aboutTargetRef} className="spacer d-block"></span>
                 <h1>about me</h1>
                 <div className="container border border-2 border-dark pb-5 mb-5">
-                    <div className="d-flex">
-                        <div className="col text-center pt-5" style={{height: 500 + "px", overflow: "hidden"}}>
+                    <div className="row">
+                        <div className="col-lg-6 text-center pt-5 mb-5" style={{height: 500 + "px", overflow: "hidden"}}>
                             <img src={profile} alt="profile-image" style={{objectFit: "cover", overflow: "hidden"}} />
                         </div>
-                        <div className="col d-flex flex-column justify-content-center" >
+                        <div className="col-lg-6 d-flex flex-column justify-content-center" >
                             <h1>Meet Scott Bianchi</h1>
                             <h5 className="lh-lg">My name is Scott Bianchi, I am an independent artist with a background in drawing, printmaking, and painting. There is a fascination that comes from pop culture references, celebrities, and heroes that spring memories of a certain year or age that inspire my work. Making my art pop with color and my own sketching style, I like to bring these memories to life and to share with others that remember them in their own way.</h5>
                         </div>

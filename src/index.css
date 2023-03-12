@@ -29,4 +29,12 @@ h1 {
         text-align: center;
         width: 100px;
     }
+
+    #category1carouselControl {
+        order: 2;
+    }
+
+    #category1carouselControl + div {
+        order: 1;
+    }
 }

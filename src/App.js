@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import Root from "./components/Root";
 import CategoryView from "./components/CategoryView";
 import HomePage from "./components/HomePage";
+import ContactForm from "./components/ContactForm";
 import ItemDataService from "./services/item.js";
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
   return (
     <React.Fragment>
       <RouterProvider router={router} />
+      <ContactForm />
     </React.Fragment>
   );
 }

@@ -2,8 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
 
-import ContactForm from "./ContactForm";
-
 export default function Root() {
 
     const navBarCollapseRef = React.useRef();
@@ -48,7 +46,9 @@ export default function Root() {
                             </Link>
                         </div>
                         <div className="nav-item">
-                            <ContactForm />
+                            <a href="" className="nav-link p-0 align-self-end" data-bs-toggle="modal" data-bs-target="#contactForm">
+                                Contact Me
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -11,14 +11,18 @@ export default function Root() {
 
     return (
         <React.Fragment>
-            <nav className="navbar navbar-expand-lg pt-5 pb-3">
+            <nav className="navbar navbar-expand-lg fixed-top pt-5 pb-3" style={{backgroundColor: "#f6e7d8"}}>
                 <div className="container p-0">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav container justify-content-between px-5">
-                            <Link className="nav-link p-0 align-self-end" to="/">
+                            <Link 
+                                className="nav-link p-0 align-self-end"
+                                to={{ pathname: "/"}}
+                                state={{ref: "home"}}
+                            >
                                 Home
                             </Link>
                             <Link 

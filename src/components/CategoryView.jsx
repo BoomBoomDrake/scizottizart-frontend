@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function CategoryView({category}) {
+export default function CategoryView(props) {
     return (
-        <img src={category[0].img} alt="test" />
+        <img src={props.category[0].img} alt="test" />
     )
 }

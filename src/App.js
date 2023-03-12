@@ -8,9 +8,10 @@ import ItemDataService from "./services/item.js";
 
 function App() {
   const [cart, setCart] = React.useState(["Test", "Items"])
-  const [animals, setAnimals] = React.useState(["Test", "Animals"])
-  const [sketches, setSketches] = React.useState(["Test", "Sketches"])
-  const [celebrities, setCelebrities] = React.useState(["Test", "Celebrities"])
+  const [animals, setAnimals] = React.useState([])
+  const [sketches, setSketches] = React.useState([])
+  const [celebrities, setCelebrities] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(false);
   // Disabled until client gets commision work
   // const [commissions, setCommissions] = React.useState(["Test", "Commissions"])
 
@@ -23,33 +24,38 @@ function App() {
   const commonProps = {}
   const categories = [animals, sketches, celebrities]
 
-  async function getAnimals() {
+  const getAnimals = () => {
+    setIsLoading(true);
     ItemDataService.getItemsByCategory("Animals")
       .then(response => {
-        console.log(response.data.items)
         setAnimals(response.data.items)
+        console.log(animals)
+        setIsLoading(false);
       })
       .catch((e) => {
         console.error(e);
       });
   }
 
-  async function getSketches() {
+  const getSketches = () => {
+    setIsLoading(true);
     ItemDataService.getItemsByCategory("Sketches")
       .then(response => {
-        console.log(response.data.items)
         setSketches(response.data.items)
+        setIsLoading(false);
       })
       .catch((e) => {
         console.error(e);
       });
   }
 
-  async function getCelebrities() {
+  const getCelebrities = () => {
+    setIsLoading(true);
     ItemDataService.getItemsByCategory("Celebrities")
       .then(response => {
-        console.log(response.data.items)
         setCelebrities(response.data.items)
+        console.log(celebrities);
+        setIsLoading(false);
       })
       .catch((e) => {
         console.error(e);
@@ -62,8 +68,8 @@ function App() {
       element: <Root />,
       children: [
         {
-          path: "/", 
-          element: <HomePage categories={categories}/>,
+          path: "/",
+          element: <HomePage animals={animals} categories={categories} isLoading={isLoading}/>,
         },
         {
           path: "/animals",
@@ -75,7 +81,7 @@ function App() {
         },
         {
           path: "/celebrities",
-          element: <CategoryView category={sketches} />,
+          element: <CategoryView category={celebrities} />,
         },
       ]
     }

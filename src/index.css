@@ -2,4 +2,13 @@
 
 body {
     font-family: 'Bebas Neue', cursive;
+    background-color: #f6e7d8;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+.spacer {
+    height: 88px;
 }

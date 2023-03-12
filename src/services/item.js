@@ -6,4 +6,6 @@ class ItemDataService {
     }
 }
 
-export default new ItemDataService();
+const DataService = new ItemDataService();
+
+export default DataService;

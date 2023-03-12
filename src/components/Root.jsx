@@ -4,10 +4,6 @@ import { HashLink as Link } from "react-router-hash-link";
 
 export default function Root() {
 
-    const navBarCollapseRef = React.useRef();
-
-    const [collapse, setCollapse] = React.useState();
-
     return (
         <React.Fragment>
             <nav className="navbar navbar-expand-lg fixed-top pt-4">
@@ -17,7 +13,7 @@ export default function Root() {
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div ref={navBarCollapseRef} className="navbar-nav container navbar-collapse collapse justify-content-between px-5 pt-3" id="navbarCollapse">
+                    <div className="navbar-nav container navbar-collapse collapse justify-content-between px-5 pt-3" id="navbarCollapse">
                         <div className="nav-item">
                             <Link
                                 className="nav-link p-0 align-self-end"
@@ -46,9 +42,9 @@ export default function Root() {
                             </Link>
                         </div>
                         <div className="nav-item">
-                            <a href="" className="nav-link p-0 align-self-end" data-bs-toggle="modal" data-bs-target="#contactForm">
+                            <button href="" className="nav-link p-0 align-self-end btn" data-bs-toggle="modal" data-bs-target="#contactForm">
                                 Contact Me
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

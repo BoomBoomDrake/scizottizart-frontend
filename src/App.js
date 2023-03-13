@@ -9,7 +9,7 @@ import ShoppingCart from "./components/Shopping Cart";
 import ItemDataService from "./services/item.js";
 
 function App() {
-  const [cart, setCart] = React.useState([])
+  const [cart, setCart] = React.useState(["Test", "Items"])
   const [animals, setAnimals] = React.useState([])
   const [sketches, setSketches] = React.useState([])
   const [celebrities, setCelebrities] = React.useState([])
@@ -58,7 +58,14 @@ function App() {
   }
 
   const createCheckoutSession = (arr) => {
-    console.log(arr);
+    ItemDataService.createCheckoutSessions(arr)
+      .then((res) => {
+        console.log(res.data);
+        // window.location = res.data.url
+      })
+      .catch(e => {
+        console.error(e);
+      });
   }
 
   const router = createBrowserRouter([

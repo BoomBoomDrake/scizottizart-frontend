@@ -34,7 +34,7 @@ export default function ItemCard(props) {
 
 
     const filterMediumsByName = (query) => {
-        const filtered = materials.filter(medium => {
+        const filtered = mediums.filter(medium => {
             if (query === medium.name) return medium;
         })
 
@@ -231,7 +231,6 @@ export default function ItemCard(props) {
                         className="btn btn-primary"
                         data-bs-dismiss="modal"
                         onClick={() => {
-                          // TODO: pass addToCart from App.js
                           props.addToCart(item);
                           resetItem();
                         }}

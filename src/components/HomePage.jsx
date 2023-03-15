@@ -64,7 +64,7 @@ export default function HomePage(props) {
                         </div>
                         <div className="text-center mx-3">
                             {/* TODO: Make email icon open contact form modal on click */}
-                            <a className="nav-link">
+                            <a className="link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#contactForm">
                                 <FontAwesomeIcon icon={faEnvelope} size="3x" />
                                 <h3>Email Me</h3>
                             </a>

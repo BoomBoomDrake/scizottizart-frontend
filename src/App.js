@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import _, { add } from "lodash";
 
 import Root from "./components/Root";
 import CategoryView from "./components/CategoryView";
@@ -9,7 +10,7 @@ import ShoppingCart from "./components/Shopping Cart";
 import ItemDataService from "./services/item.js";
 
 function App() {
-  const [cart, setCart] = React.useState(["Test", "Items"])
+  const [cart, setCart] = React.useState([])
   const [animals, setAnimals] = React.useState([])
   const [sketches, setSketches] = React.useState([])
   const [celebrities, setCelebrities] = React.useState([])
@@ -29,7 +30,6 @@ function App() {
     ItemDataService.getItemsByCategory("Animals")
       .then(response => {
         setAnimals(response.data.items)
-        console.log(animals)
       })
       .catch((e) => {
         console.error(e);
@@ -50,7 +50,6 @@ function App() {
     ItemDataService.getItemsByCategory("Celebrities")
       .then(response => {
         setCelebrities(response.data.items)
-        console.log(celebrities);
       })
       .catch((e) => {
         console.error(e);
@@ -60,12 +59,49 @@ function App() {
   const createCheckoutSession = (arr) => {
     ItemDataService.createCheckoutSessions(arr)
       .then((res) => {
-        console.log(res.data);
-        // window.location = res.data.url
+        // console.log(res.data);
+        window.location = res.data.url
       })
       .catch(e => {
         console.error(e);
       });
+  }
+
+  const addToCart = (childData) => {
+    if (cart.length === 0) {
+      setCart([childData]);
+    }
+
+    if (checkItemExistInCart(childData)) {
+      updateCartItem(childData);
+    } else {
+      setCart([...cart, childData])
+    }
+  }
+
+  const checkItemExistInCart = (childData) => {
+    let filtered = cart.map(item => {
+      return isEqual(childData, item)
+    })
+
+    return filtered.length > 0
+  }
+
+  const updateCartItem = (childData) => {
+    setCart((current) => {
+      current.map((item) => {
+        if (isEqual(childData, item)) {
+          return {...item, quantity: item.quantity + childData.quantity};      }
+      })
+    })
+  }
+
+  const isEqual = (childData, existingData) => {
+    if (childData.id !== existingData.id) {
+      return false
+    } else {
+      return _.isEqual(childData.attributes, existingData.attributes)
+    }
   }
 
   const router = createBrowserRouter([
@@ -79,15 +115,15 @@ function App() {
         },
         {
           path: "/animals",
-          element: <CategoryView category={animals} />,
+          element: <CategoryView category={animals} addToCart={addToCart} />,
         },
         {
           path: "/sketches",
-          element: <CategoryView category={sketches} />,
+          element: <CategoryView category={sketches} addToCart={addToCart} />,
         },
         {
           path: "/celebrities",
-          element: <CategoryView category={celebrities} />,
+          element: <CategoryView category={celebrities} addToCart={addToCart}/>,
         },
       ]
     }

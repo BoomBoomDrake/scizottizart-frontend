@@ -41,7 +41,7 @@ export default function ShoppingCart(props) {
             <a href="" className="nav-link p-0 align-self-end" data-bs-toggle="modal" data-bs-target="#shoppingCart">
                 Shopping Cart
             </a>
-            <div class="modal fade" id="shoppingCart" tabindex="-1" aria-labelledby="" aria-hidden="true">
+            <div className="modal fade" id="shoppingCart" tabIndex="-1" aria-labelledby="" aria-hidden="true">
                 <div className="modal-dialog modal-xl modal-fullscreen-lg-down row">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -49,7 +49,7 @@ export default function ShoppingCart(props) {
                                 <h2 className="pt-3">Shopping Cart</h2>
                                 <p>{findQuantity(props.cart)}</p>
                             </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             {props.cart.length === 0 ? (

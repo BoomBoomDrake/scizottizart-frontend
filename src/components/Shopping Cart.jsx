@@ -76,7 +76,7 @@ export default function ShoppingCart(props) {
                                                 <ul>
                                                     <li>medium</li>
                                                     <li>size</li>
-                                                    <li>coat</li>
+                                                    <li>finish</li>
                                                 </ul>
                                             </td>
                                             <td className="align-middle">2</td>

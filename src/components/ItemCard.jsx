@@ -3,9 +3,9 @@ import React from "react";
 export default function ItemCard(props) {
 
     const initialItemState = {
-        id: props.item._id,
+        _id: props.item._id,
         name: props.item.name,
-        attributes: attributes,
+        attributes: {},
         quantity: 1,
     };
 
@@ -15,7 +15,7 @@ export default function ItemCard(props) {
 
     const initialAttributesState = {
         material: "William Turner Paper",
-        coat: "None",
+        finish: "None",
         size: "5x9",
         price: 4000,
     }
@@ -24,12 +24,12 @@ export default function ItemCard(props) {
     const [attributes, setAttributes] = React.useState(initialAttributesState);
     const [displayMedium, setDisplayMedium] = React.useState(initialDisplayMediumState);
     const [mediums, setMediums] = React.useState(initialMediumsArr);
-    const [displayCoat, setDisplayCoat] = React.useState(displayMedium.coats[0]);
-    const [sizeOptions, setSizeOptions] = React.useState(Object.keys(displayCoat.sizes));
+    const [displayFinish, setDisplayFinish] = React.useState(displayMedium.finishes[0]);
+    const [sizeOptions, setSizeOptions] = React.useState(Object.keys(displayFinish.sizes));
 
     const sizeRef = React.useRef();
     const materialRef = React.useRef();
-    const coatRef = React.useRef();
+    const finishRef = React.useRef();
     const quantRef = React.useRef();
 
 
@@ -41,9 +41,9 @@ export default function ItemCard(props) {
         return filtered.length !== 0 ? filtered[0] : "error";
     }
 
-    const filterCoatsByName = (query) => {
-      const filtered = displayMedium.coats.filter(coat => {
-        if (query === coat.name) return coat;
+    const filterFinishesByName = (query) => {
+      const filtered = displayMedium.finishes.filter(finish => {
+        if (query === finish.name) return finish;
       })
 
       return filtered.length !== 0 ? filtered[0] : "error";
@@ -57,40 +57,40 @@ export default function ItemCard(props) {
         let value = selectObject.value
 
         let newDisplayMedium = filterMediumsByName(value)
-        let newDisplayCoat = newDisplayMedium.coats[0]
-        let newSizeOptions = Object.keys(newDisplayCoat.sizes)
+        let newDisplayFinish = newDisplayMedium.finishes[0]
+        let newSizeOptions = Object.keys(newDisplayFinish.sizes)
 
         setDisplayMedium(newDisplayMedium);
-        setDisplayCoat(newDisplayCoat);
+        setDisplayFinish(newDisplayFinish);
         setSizeOptions(newSizeOptions);
         setAttributes({
           material: newDisplayMedium.name,
-          coat: newDisplayCoat.name,
+          finish: newDisplayFinish.name,
           size: newSizeOptions[0],
-          price: newDisplayCoat.sizes[newSizeOptions[0]],
+          price: newDisplayFinish.sizes[newSizeOptions[0]],
         })
     }
 
-    const handleCoatChange = (selectObject) => {
+    const handleFinishChange = (selectObject) => {
         let value = selectObject.value;
 
-        let newDisplayCoat = filterCoatsByName(value);
-        let newSizeOptions = Object.keys(newDisplayCoat.sizes)
+        let newDisplayFinish = filterFinishesByName(value);
+        let newSizeOptions = Object.keys(newDisplayFinish.sizes)
 
-        setDisplayCoat(newDisplayCoat);
+        setDisplayFinish(newDisplayFinish);
         setSizeOptions(newSizeOptions);
         setAttributes({
           ...attributes,
-          coat: newDisplayCoat.name,
+          finish: newDisplayFinish.name,
           size: newSizeOptions[0],
-          price: newDisplayCoat.sizes[newSizeOptions[0]],
+          price: newDisplayFinish.sizes[newSizeOptions[0]],
         })
     }
 
     const handleSizeChange = (selectObject) => {
       let value = selectObject.value
 
-      let newPrice = displayCoat.sizes[value];
+      let newPrice = displayFinish.sizes[value];
 
       setAttributes({
         ...attributes,
@@ -105,142 +105,160 @@ export default function ItemCard(props) {
     }
 
     return(
+      <React.Fragment>
+        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{width: 18 + "rem"}}>
+          <img src={props.item.img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+          <h4 className="text-center my-2">{props.item.name}</h4>
+          <button
+            type="button"
+            className="btn btn-dark"
+            data-bs-toggle="modal"
+            data-bs-target={`#A${props.index}Modal`}
+            onClick={() => console.log(sizeOptions)}
+          >
+            More Info
+          </button>
+        </div>
+        
+        {/* Modal for each card */}
         <div
-              className="card m-3"
-              key={props.item._id}
-              style={{ width: 18 + "rem" }}
-            >
-              <img src={props.item.img} className="card-img-top" alt="..." />
-              <div className="card-body border-top">
-                <h5 className="card-title">{props.item.name}</h5>
-                <p className="card-text">
-                  Description of image/Size availability/Pricing?
-                </p>
+          key={`${props.item._id}Modal`}
+          className="modal fade"
+          id={`A${props.index}Modal`}
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5">Add To Cart</h1>
                 <button
                   type="button"
-                  className="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target={`#${props.item.name}Modal`}
-                >
-                  More Info
-                </button>
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  onClick={() => resetItem()}
+                ></button>
               </div>
-
-              {/* Modal for each card */}
-              <div
-                className="modal fade"
-                id={`${props.item.name}Modal`}
-                tabIndex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h1 className="modal-title fs-5">Add To Cart</h1>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                        onClick={() => resetItem()}
-                      ></button>
-                    </div>
-                    <div className="modal-body row">
-                      <div className="col-6 text-center">
-                        <img
-                          className="img-fluid rounded mb-3"
-                          src={props.item.img}
-                          alt="..."
-                          style={{ width: 10 + "em", height: 12 + "em" }}
-                        />
-                      </div>
-                      <div className="border-start col-6">
-                        <div className="d-flex flex-column pt-4 gap-3">
-                          <div className="row">
-                            <label htmlFor="materialSelection">Material:
-                                <select 
-                                    ref={materialRef}
-                                    name="material" 
-                                    id="materialSelection" 
-                                    onChange={() => {
-                                        handleMaterialSelectChange(materialRef.current);
-                                    }}
-                                >
-                                    {mediums.map(medium => {
-                                        return (
-                                            <option value={medium.name}>{medium.name}</option>
-                                        )
-                                    })}
-                                </select>
-                            </label>
-                            <label htmlFor="coatSelection">Coat:
-                              <select 
-                                ref={coatRef}
-                                name="coat"
-                                id="coatSelection"
-                                onChange={() => {
-                                  handleCoatChange(coatRef.current);
-                                }}
-                              >
-                                {displayMedium.coats.map(coat => {
+              <div className="modal-body row">
+                <div className="col-6 text-center">
+                  <img
+                    className="img-fluid rounded mb-3"
+                    src={props.item.img}
+                    alt="..."
+                    style={{ width: 10 + "em", height: 12 + "em" }}
+                  />
+                </div>
+                <div className="border-start col-6">
+                  <div className="d-flex flex-column pt-4 gap-3">
+                    <div className="row">
+                      <label htmlFor="materialSelection" className="mb-2">Material:
+                          <select
+                              ref={materialRef}
+                              name="material"
+                              id="materialSelection"
+                              className="mx-2"
+                              onChange={() => {
+                                  handleMaterialSelectChange(materialRef.current);
+                              }}
+                          >
+                              {mediums.map(medium => {
                                   return (
-                                    <option value={coat.name}>{coat.name}</option>
+                                      <option key={medium.name} value={medium.name}>{medium.name}</option>
                                   )
-                                })}
-                              </select>
-                            </label>
-                            <label htmlFor="sizeSelection">
-                                <select 
-                                  ref={sizeRef}
-                                  name="size" 
-                                  id="sizeSelection"
-                                  onChange={() => {
-                                    handleSizeChange(sizeRef.current);
-                                  }}
-                                >
-                                  {sizeOptions.map(size => {
-                                    <option value={size}>{size}: {displayCoat.sizes[size]}</option>
-                                  })}
-                                </select>
-                            </label>
-                            <label htmlFor="quantitySelection">Qty:
-                              <input
-                                ref={quantRef}
-                                type="number" 
-                                name="quantity" 
-                                id="quantitySelection"
-                                min="1"
-                                max="20"
-                                onChange={() => {
-                                  handleQuantChange(quantRef.current);
-                                }}
-                              />
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="modal-footer">
-                      <div className="col">
-                        <h2>${(item.quantity * item.price) / 100}.00</h2>
-                        <small>*Shipping & tax calculated at checkout</small>
-                      </div>
-                      <button
-                        type="button"
-                        className="btn btn-primary"
-                        data-bs-dismiss="modal"
-                        onClick={() => {
-                          props.addToCart(item);
-                          resetItem();
-                        }}
-                      >
-                        Add To Cart
-                      </button>
+                              })}
+                          </select>
+                      </label>
+                      <label htmlFor="finishSelection" className="mb-2">Finish:
+                        <select
+                          ref={finishRef}
+                          name="finish"
+                          id="finishSelection"
+                          className="mx-2"
+                          onChange={() => {
+                            handleFinishChange(finishRef.current);
+                          }}
+                        >
+                          {displayMedium.finishes.map(finish => {
+                            return (
+                              <option key={finish.name} value={finish.name}>{finish.name}</option>
+                            )
+                          })}
+                        </select>
+                      </label>
+                      <label htmlFor="sizeSelection" className="mb-2">Size:
+                          <select
+                            ref={sizeRef}
+                            name="size"
+                            id="sizeSelection"
+                            className="mx-2"
+                            onChange={() => {
+                              handleSizeChange(sizeRef.current);
+                            }}
+                          >
+                            {sizeOptions.map(size => {
+                              return <option key={size} value={size}>{size}: ${displayFinish.sizes[size] / 100}.00</option>
+                            })}
+                          </select>
+                      </label>
+                      <label htmlFor="quantitySelection" className="mb-2">Qty:
+                        <input
+                          ref={quantRef}
+                          type="number"
+                          name="quantity"
+                          id="quantitySelection"
+                          className="mx-2"
+                          min="1"
+                          placeholder="1"
+                          onChange={() => {
+                            handleQuantChange(quantRef.current);
+                          }}
+                        />
+                      </label>
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="modal-footer">
+                <div className="col">
+                  <h2>${(item.quantity * attributes.price) / 100}.00</h2>
+                  <small>*Shipping & tax calculated at checkout</small>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  onClick={() => {
+                    props.addToCart(item);
+                    resetItem();
+                  }}
+                >
+                  Add To Cart
+                </button>
+              </div>
             </div>
+          </div>
+        </div>
+        {/* <div
+          className="card m-3 col-md-3"
+          key={props.item._id}
+          style={{ width: 18 + "rem" }}
+        >
+          <img src={props.item.img} className="card-img-top" alt="..." />
+          <div className="card-body border-top">
+            <h5 className="card-title">{props.item.name}</h5>
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target={`#A${props.index}Modal`}
+              onClick={() => console.log(sizeOptions)}
+            >
+              More Info
+            </button>
+          </div>
+        </div> */}
+      </React.Fragment>
     )
 }

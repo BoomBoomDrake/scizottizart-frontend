@@ -23,10 +23,10 @@ export default function CategoryView(props) {
         <div className="container p-0">
             <span ref={targetRef} className="spacer d-block"></span>
             <h1>{props.category[0].category}</h1>
-            <div className="container border border-2 border-dark pb-5 mb-5">
-                {props.category.map((obj) => {
+            <div className="container border border-2 border-dark pb-5 mb-5 d-flex flex-wrap justify-content-center">
+                {props.category.map((obj, ind) => {
                     return(
-                        <ItemCard item={obj} addToCart={props.addToCart}/>
+                        <ItemCard key={obj._id} item={obj} index={ind} addToCart={props.addToCart}/>
                     )
                 })}
             </div>

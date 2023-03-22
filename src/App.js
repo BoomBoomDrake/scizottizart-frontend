@@ -7,6 +7,7 @@ import CategoryView from "./components/CategoryView";
 import HomePage from "./components/HomePage";
 import ContactForm from "./components/ContactForm";
 import ShoppingCart from "./components/Shopping Cart";
+import Dashboard from "./components/Dashboard"
 import ItemDataService from "./services/item.js";
 
 function App() {
@@ -126,6 +127,10 @@ function App() {
           element: <CategoryView category={celebrities} addToCart={addToCart}/>,
         },
       ]
+    },
+    {
+      path: "/dashboard",
+      element: <Dashboard />,
     }
   ])
 

@@ -69,9 +69,6 @@ function App() {
   }
 
   const addToCart = (childData) => {
-    if (cart.length === 0) {
-      setCart([childData]);
-    }
 
     if (checkItemExistInCart(childData)) {
       updateCartItem(childData);
@@ -89,12 +86,14 @@ function App() {
   }
 
   const updateCartItem = (childData) => {
-    setCart((current) => {
-      current.map((item) => {
-        if (isEqual(childData, item)) {
-          return {...item, quantity: item.quantity + childData.quantity};      }
-      })
+
+    let updatedCart = cart.map((item) => {
+      if (isEqual(childData, item)) {
+        return {...item, quantity: item.quantity + childData.quantity};
+      } else return item
     })
+
+    setCart(updatedCart);
   }
 
   const isEqual = (childData, existingData) => {

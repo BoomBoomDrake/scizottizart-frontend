@@ -114,7 +114,6 @@ export default function HomePage(props) {
                             <div key={props.categories.indexOf(category)} className="row my-3">
                                 <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
                                     <h1>{category.length === 0 ? "loading" : category[1].category}</h1>
-                                    <p>Brief description about category</p>
                                     <Link to={category.length === 0 ? "#" : "/"+category[0].category}>View All</Link>
                                 </div>
                                 <div id={"category" + props.categories.indexOf(category) + "carouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
@@ -210,7 +209,6 @@ export default function HomePage(props) {
                                     </div>
                                     <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
                                         <h1>{category.length === 0 ? "loading" : category[1].category}</h1>
-                                        <p>Brief description about category</p>
                                         <Link to={category.length === 0 ? "#" : "/"+category[0].category}>View All</Link>
                                     </div>
                                 </div>

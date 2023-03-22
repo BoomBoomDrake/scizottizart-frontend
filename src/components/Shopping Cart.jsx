@@ -15,13 +15,17 @@ export default function ShoppingCart(props) {
         return total === 1 ? `${total} item` : `${total} items`;
     };
 
+    const calcItemTotal = (item) => {
+        return ((item.attributes.price * item.quantity) / 100).toFixed(2);
+    }
+
     const calcSubTotal = () => {
         let total = 0;
         props.cart.map((item) => {
-          total += item.price * item.quantity;
+          total += item.attributes.price * item.quantity;
         });
     
-        return (Math.round(total * 100) / 100).toFixed(2);
+        return (total / 100).toFixed(2);
     };
 
     const calcTax = () => {
@@ -47,7 +51,7 @@ export default function ShoppingCart(props) {
                         <div className="modal-header">
                             <div className="col">
                                 <h2 className="pt-3">Shopping Cart</h2>
-                                <p>{findQuantity(props.cart)}</p>
+                                {/* <p>{findQuantity(props.cart)}</p> */}
                             </div>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -67,21 +71,28 @@ export default function ShoppingCart(props) {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {props.cart.map((item) => {
+                                            return (
+                                                <tr>
+                                                    <th scope="row">
+                                                        <img src={item.img} alt="" style={{ width: 6 + "em", height: 8 + "em" }}/>
+                                                    </th>
+                                                    <td className="align-middle">{item.name}</td>
+                                                    <td className="align-middle">
+                                                        <ul>
+                                                            <li>Material: {item.attributes.material}</li>
+                                                            <li>Size: {item.attributes.size}</li>
+                                                            <li>Finish: {item.attributes.finish}</li>
+                                                        </ul>
+                                                    </td>
+                                                    <td className="align-middle">{item.quantity}</td>
+                                                    <td className="align-middle">${(item.attributes.price / 100).toFixed(2)}</td>
+                                                    <td className="align-middle">${calcItemTotal(item)}</td>
+                                                </tr>
+                                            )
+                                        })}
                                         <tr>
-                                            <th scope="row">
-                                                <img src={props.cart[0].img} alt="" style={{ width: 6 + "em", height: 8 + "em" }}/>
-                                            </th>
-                                            <td className="align-middle">{props.cart[0].name}</td>
-                                            <td className="align-middle">
-                                                <ul>
-                                                    <li>medium</li>
-                                                    <li>size</li>
-                                                    <li>finish</li>
-                                                </ul>
-                                            </td>
-                                            <td className="align-middle">2</td>
-                                            <td className="align-middle">$50.00</td>
-                                            <td className="align-middle">$100.00</td>
+                                            
                                         </tr>
                                     </tbody>
                                 </table>

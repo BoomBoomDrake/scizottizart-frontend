@@ -1,10 +1,12 @@
 import React from "react";
+import {flushSync} from "react-dom";
 
 export default function ItemCard(props) {
 
     const initialItemState = {
         _id: props.item._id,
         name: props.item.name,
+        img: props.item.img,
         attributes: {},
         quantity: 1,
     };
@@ -27,10 +29,20 @@ export default function ItemCard(props) {
     const [displayFinish, setDisplayFinish] = React.useState(displayMedium.finishes[0]);
     const [sizeOptions, setSizeOptions] = React.useState(Object.keys(displayFinish.sizes));
 
+    const [added, setAdded] = React.useState(false);
+
     const sizeRef = React.useRef();
     const materialRef = React.useRef();
     const finishRef = React.useRef();
     const quantRef = React.useRef();
+
+    React.useEffect(() => {
+      if(added) {
+        props.addToCart(item);
+        resetItem();
+        setAdded(false);
+      } else return
+    }, [added])
 
 
     const filterMediumsByName = (query) => {
@@ -102,6 +114,11 @@ export default function ItemCard(props) {
     const handleQuantChange = (selectObject) => {
       let value = selectObject.value
       setItem({...item, quantity: value});
+    }
+
+    const handleAddToCartClick = () => {
+      setItem({...item, attributes: attributes});
+      setAdded(true);
     }
 
     return(
@@ -229,10 +246,7 @@ export default function ItemCard(props) {
                   type="button"
                   className="btn btn-primary"
                   data-bs-dismiss="modal"
-                  onClick={() => {
-                    props.addToCart(item);
-                    resetItem();
-                  }}
+                  onClick={handleAddToCartClick}
                 >
                   Add To Cart
                 </button>
@@ -240,25 +254,6 @@ export default function ItemCard(props) {
             </div>
           </div>
         </div>
-        {/* <div
-          className="card m-3 col-md-3"
-          key={props.item._id}
-          style={{ width: 18 + "rem" }}
-        >
-          <img src={props.item.img} className="card-img-top" alt="..." />
-          <div className="card-body border-top">
-            <h5 className="card-title">{props.item.name}</h5>
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target={`#A${props.index}Modal`}
-              onClick={() => console.log(sizeOptions)}
-            >
-              More Info
-            </button>
-          </div>
-        </div> */}
       </React.Fragment>
     )
 }

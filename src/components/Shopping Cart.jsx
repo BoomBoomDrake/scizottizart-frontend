@@ -2,6 +2,9 @@ import React from "react";
 import plus from "../images/plus-solid.svg";
 import minus from "../images/minus-solid.svg";
 
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function ShoppingCart(props) {
 
     const shippingCost = 9.99;
@@ -32,9 +35,9 @@ export default function ShoppingCart(props) {
     
     const calcTotal = () => {
         return (
-          Number(calcSubTotal(props.cart)) +
-          Number(calcTax(props.cart)) +
-          shippingCost
+          Number(calcSubTotal()) +
+          Number(calcTax()) +
+          (calcSubTotal() >= 100.00 ? 0 : shippingCost)
         ).toFixed(2);
     };
 
@@ -42,15 +45,14 @@ export default function ShoppingCart(props) {
         return ((item.attributes.price * item.quantity) / 100).toFixed(2);
     }
 
-    const handleQuantityChange = (item, event) => {
-        let value = event.target.value;
-        props.setItemQuantity(item, value);
-    }
-
     return (
         <React.Fragment>
-            <a href="" className="nav-link p-0 align-self-end" data-bs-toggle="modal" data-bs-target="#shoppingCart">
-                Shopping Cart
+            <a href="" id="cartIcon" className="nav-link p-0 align-self-end rounded-circle" data-bs-toggle="modal" data-bs-target="#shoppingCart">
+                <div className="d-flex flex-column align-items-center">
+                    <p className="m-0">View Cart</p>
+                    <span className="badge bg-danger mb-1" style={{display: props.cart.length === 0 ? "none" : "block"}}>{findQuantity(props.cart)}</span>
+                    <FontAwesomeIcon icon={faCartShopping} size="2x"/>
+                </div>
             </a>
             <div className="modal fade" id="shoppingCart" tabIndex="-1" aria-labelledby="" aria-hidden="true">
                 <div className="modal-dialog modal-xl modal-fullscreen-lg-down row">
@@ -140,7 +142,8 @@ export default function ShoppingCart(props) {
                                         <p>Subtotal: ${calcSubTotal()}</p>
                                     </li>
                                     <li>
-                                        <p>Shipping: ${shippingCost}</p>
+                                        <p className="mb-0">Shipping: {calcSubTotal() >= 100.00 ? "Free" : `$${shippingCost}`}</p>
+                                        <small className="text-muted">Free Shipping For Orders Over $100!</small>
                                     </li>
                                     <li>
                                         <p>Tax: ${calcTax()}</p>

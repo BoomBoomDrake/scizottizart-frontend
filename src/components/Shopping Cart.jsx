@@ -152,7 +152,7 @@ export default function ShoppingCart(props) {
                                         <h3>Total: ${calcTotal()}</h3>
                                     </li>
                                 </ul>
-                                <button className="btn btn-dark" onClick={ () => props.createCheckoutSession(props.cart)}>
+                                <button className="btn btn-dark" onClick={ () => props.cart.length === 0 ? alert("Cart Empty") : props.createCheckoutSession(props.cart)}>
                                     Proceed to Checkout
                                 </button>
                             </div>

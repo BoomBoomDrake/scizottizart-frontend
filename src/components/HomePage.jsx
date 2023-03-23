@@ -75,8 +75,10 @@ export default function HomePage(props) {
                 <h1 id="works">my works</h1>
                 <div className="container border border-2 border-dark pb-5 mb-5">
                     <div className="row d-flex justify-content-between py-5">
-                        <div className="col-lg-5">
+                        <div className="ms-5 col-lg-5 align-middle">
                             <img src={physicalExamples} alt="physical-examples" className="w-100"/>
+                            
+                            <h2 className="mt-5"><em>Free shipping for orders over $100!</em></h2>
                         </div>
                         <div className="col-lg-5">
                             <h2>All of my work is available for purchase in the following formats:</h2>

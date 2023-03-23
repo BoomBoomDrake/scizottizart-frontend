@@ -1,4 +1,6 @@
 import React from "react";
+import plus from "../images/plus-solid.svg";
+import minus from "../images/minus-solid.svg";
 
 export default function ShoppingCart(props) {
 
@@ -14,10 +16,6 @@ export default function ShoppingCart(props) {
 
         return total === 1 ? `${total} item` : `${total} items`;
     };
-
-    const calcItemTotal = (item) => {
-        return ((item.attributes.price * item.quantity) / 100).toFixed(2);
-    }
 
     const calcSubTotal = () => {
         let total = 0;
@@ -40,6 +38,15 @@ export default function ShoppingCart(props) {
         ).toFixed(2);
     };
 
+    const calcItemTotal = (item) => {
+        return ((item.attributes.price * item.quantity) / 100).toFixed(2);
+    }
+
+    const handleQuantityChange = (item, event) => {
+        let value = event.target.value;
+        props.setItemQuantity(item, value);
+    }
+
     return (
         <React.Fragment>
             <a href="" className="nav-link p-0 align-self-end" data-bs-toggle="modal" data-bs-target="#shoppingCart">
@@ -51,7 +58,7 @@ export default function ShoppingCart(props) {
                         <div className="modal-header">
                             <div className="col">
                                 <h2 className="pt-3">Shopping Cart</h2>
-                                {/* <p>{findQuantity(props.cart)}</p> */}
+                                <p>{findQuantity(props.cart)}</p>
                             </div>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -74,26 +81,54 @@ export default function ShoppingCart(props) {
                                         {props.cart.map((item) => {
                                             return (
                                                 <tr>
-                                                    <th scope="row">
+                                                    <th scope="row" className="col-2">
                                                         <img src={item.img} alt="" style={{ width: 6 + "em", height: 8 + "em" }}/>
                                                     </th>
-                                                    <td className="align-middle">{item.name}</td>
-                                                    <td className="align-middle">
+                                                    <td className="align-middle col-2">{item.name}</td>
+                                                    <td className="align-middle col-3">
                                                         <ul>
                                                             <li>Material: {item.attributes.material}</li>
                                                             <li>Size: {item.attributes.size}</li>
                                                             <li>Finish: {item.attributes.finish}</li>
                                                         </ul>
                                                     </td>
-                                                    <td className="align-middle">{item.quantity}</td>
-                                                    <td className="align-middle">${(item.attributes.price / 100).toFixed(2)}</td>
-                                                    <td className="align-middle">${calcItemTotal(item)}</td>
+                                                    <td className="align-middle col-1">
+                                                        <div className="d-flex flex-column-reverse align-items-center">
+                                                            <button
+                                                                data-add={item.id}
+                                                                className="btn border-top"
+                                                                onClick={() => {
+                                                                props.decItemCount(item);
+                                                                }}
+                                                            >
+                                                                <img src={minus} alt="plus" style={{ width: .5 + "em" }}/>
+                                                            </button>
+                                                            {item.quantity}
+                                                            <button
+                                                                data-add={item.id}
+                                                                className="btn border-bottom"
+                                                                onClick={() => {
+                                                                props.incItemCount(item);
+                                                                }}
+                                                            >
+                                                                <img src={plus} alt="plus" style={{ width: .5 + "em" }}/>
+                                                            </button>
+                                                        </div>
+                                                        {/* <input type="number" name="quantity" value={item.quantity} onChange={handleQuantityChange} /> */}
+                                                    </td>
+                                                    <td className="align-middle col-2">${(item.attributes.price / 100).toFixed(2)}</td>
+                                                    <td className="align-middle col-2">${calcItemTotal(item)}</td>
+                                                    <td className="align-middle">
+                                                        <button
+                                                        type="button"
+                                                        className="btn-close"
+                                                        aria-label="Close"
+                                                        onClick={() => props.removeFromCart(item)}
+                                                        ></button>
+                                                    </td>
                                                 </tr>
                                             )
                                         })}
-                                        <tr>
-                                            
-                                        </tr>
                                     </tbody>
                                 </table>
                             )}

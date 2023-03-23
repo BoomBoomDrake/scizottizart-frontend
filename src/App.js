@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
-import _, { add } from "lodash";
+import _ from "lodash";
 
 import Root from "./components/Root";
 import CategoryView from "./components/CategoryView";
@@ -24,7 +24,6 @@ function App() {
     getCelebrities();
   }, []);
 
-  const commonProps = {}
   const categories = [animals, sketches, celebrities]
 
   const getAnimals = () => {
@@ -60,7 +59,6 @@ function App() {
   const createCheckoutSession = (arr) => {
     ItemDataService.createCheckoutSessions(arr)
       .then((res) => {
-        // console.log(res.data);
         window.location = res.data.url
       })
       .catch(e => {
@@ -73,12 +71,12 @@ function App() {
     if (checkItemExistInCart(childData)) {
       updateCartItem(childData);
     } else {
-      setCart([...cart, childData])
+      setCart([...cart, {...childData}])
     }
   }
 
   const checkItemExistInCart = (childData) => {
-    let filtered = cart.map(item => {
+    let filtered = cart.filter(item => {
       return isEqual(childData, item)
     })
 
@@ -97,11 +95,46 @@ function App() {
   }
 
   const isEqual = (childData, existingData) => {
-    if (childData.id !== existingData.id) {
+    if (childData._id !== existingData._id) {
       return false
     } else {
       return _.isEqual(childData.attributes, existingData.attributes)
     }
+  }
+
+  const incItemCount = (childData) => {
+    setCart((current) =>
+      current.map((item) => {
+        if (item.id === childData.id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      })
+    );
+  };
+
+  const decItemCount = (childData) => {
+    if (childData.quantity === 1) {
+      let response = window.confirm("Remove from cart?");
+      if (response) {
+        removeFromCart(childData);
+      } else return;
+    }
+    setCart((current) =>
+      current.map((item) => {
+        if (item.id === childData.id) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      })
+    );
+  };
+
+  const removeFromCart = (childData) => {
+    let filteredCart = cart.filter((item) => {
+      return !isEqual(childData, item)
+    })
+    setCart(filteredCart);
   }
 
   const router = createBrowserRouter([
@@ -139,9 +172,11 @@ function App() {
       <RouterProvider router={router} />
       <ContactForm />
       <ShoppingCart 
-        cart={cart} 
-        setCart={setCart} 
-        animals={animals}
+        cart={cart}
+        removeFromCart={removeFromCart}
+        incItemCount={incItemCount}
+        decItemCount={decItemCount}
+        setCart={setCart}
         createCheckoutSession={createCheckoutSession}
       />
     </React.Fragment>

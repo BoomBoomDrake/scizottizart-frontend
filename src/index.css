@@ -17,6 +17,13 @@ h1 {
     height: 88px;
 }
 
+#cartIcon {
+    position: fixed;
+    bottom: 30px;
+    left: 28px;
+    background-color: #f6e7d8;
+}
+
 @media screen and (max-width: 992px) {
     nav {
         background-color: transparent;

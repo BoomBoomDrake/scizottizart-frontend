@@ -9,14 +9,19 @@ import ContactForm from "./components/ContactForm";
 import ShoppingCart from "./components/Shopping Cart";
 import Dashboard from "./components/Dashboard"
 import ItemDataService from "./services/item.js";
+import DBAddItem from "./components/DBAddItem";
+import DBSearchResults from "./components/DBSearchResults";
 
 function App() {
   const [cart, setCart] = React.useState([])
+  const [searchResults, setSearchResults] = React.useState(null);
   const [animals, setAnimals] = React.useState([])
   const [sketches, setSketches] = React.useState([])
   const [celebrities, setCelebrities] = React.useState([])
   // Disabled until client gets commision work
   // const [commissions, setCommissions] = React.useState(["Test", "Commissions"])
+
+  const [displayCartButton, setDisplayCartButton] = React.useState(true);
 
   React.useEffect(() => {
     getAnimals();
@@ -25,6 +30,14 @@ function App() {
   }, []);
 
   const categories = [animals, sketches, celebrities]
+
+  const find = (query, by) => {
+    ItemDataService.find(query, by)
+            .then(response => {
+              setSearchResults(response.data.items)
+              return response.data.items
+            })
+  }
 
   const getAnimals = () => {
     ItemDataService.getItemsByCategory("Animals")
@@ -54,6 +67,45 @@ function App() {
       .catch((e) => {
         console.error(e);
       });
+  }
+
+  const addStoreItem = (data) => {
+    ItemDataService.addStoreItem(data)
+      .then(response => {
+        console.log(response);
+        alert("Item uploaded successfully. Returning to dashboard home.");
+        window.location = "/dashboard"
+      })
+      .catch(error => {
+        alert("Error: " + error)
+        return {error: error}
+      })
+  }
+
+  const updateStoreItem = (data) => {
+    ItemDataService.updateStoreItem(data)
+      .then(response => {
+        console.log(response.data)
+        alert("Item successully updated. Returning to dashboard home.")
+        window.location = "/dashboard";
+      })
+      .catch(error => {
+        alert("Error: " + error);
+        return {error: error}
+      })
+  }
+
+  const deleteStoreItem = (id) => {
+    ItemDataService.deleteStoreItem(id)
+      .then((response) => {
+        console.log(response)
+        alert("Item successully deleted. Returning to dashboard home.")
+        window.location = "/dashboard";
+      })
+      .catch(error => {
+        alert("Error: " + error);
+        return {error: error}
+      })
   }
 
   const createCheckoutSession = (arr) => {
@@ -140,11 +192,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root />,
+      element: <Root setDisplayCartButton={setDisplayCartButton}/>,
       children: [
         {
           path: "/",
-          element: <HomePage categories={categories}/>,
+          element: <HomePage categories={categories} />,
         },
         {
           path: "/animals",
@@ -162,7 +214,31 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: <Dashboard />,
+      element: <Dashboard 
+                  categories={categories}
+                  find={find}
+                  setSearchResults={setSearchResults}
+                  setDisplayCartButton={setDisplayCartButton}
+                />,
+      children: [
+        {
+          path: "/dashboard",
+          element: <DBSearchResults 
+                      searchResults={searchResults} 
+                      updateStoreItem={updateStoreItem}
+                      deleteStoreItem={deleteStoreItem}
+                    />
+        },
+        {
+          path: "/dashboard/add-item",
+          element: <DBAddItem 
+                    addStoreItem={addStoreItem}
+                    setSearchResults={setSearchResults}
+                    searchResults={searchResults}
+                    find={find}
+                  />
+        }
+      ] 
     }
   ])
 
@@ -178,6 +254,7 @@ function App() {
         decItemCount={decItemCount}
         setCart={setCart}
         createCheckoutSession={createCheckoutSession}
+        displayCartButton={displayCartButton}
       />
     </React.Fragment>
   );

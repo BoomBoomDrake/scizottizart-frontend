@@ -2,7 +2,11 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
 
-export default function Root() {
+export default function Root(props) {
+
+    React.useEffect(() => {
+        props.setDisplayCartButton(true);
+    })
 
     return (
         <React.Fragment>

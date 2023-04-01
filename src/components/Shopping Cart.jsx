@@ -14,7 +14,8 @@ export default function ShoppingCart(props) {
         if (arr.length === 0) return `${total} items`;
 
         arr.map((item) => {
-            total += item.quantity;
+            total += Number(item.quantity);
+            return item
         });
 
         return total === 1 ? `${total} item` : `${total} items`;
@@ -24,6 +25,7 @@ export default function ShoppingCart(props) {
         let total = 0;
         props.cart.map((item) => {
           total += item.attributes.price * item.quantity;
+          return item
         });
     
         return (total / 100).toFixed(2);
@@ -47,13 +49,16 @@ export default function ShoppingCart(props) {
 
     return (
         <React.Fragment>
-            <a href="" id="cartIcon" className="nav-link p-0 align-self-end rounded-circle" data-bs-toggle="modal" data-bs-target="#shoppingCart">
+            {/* Shopping Cart Button */}
+            <button style={{display: props.displayCartButton ? "visible" : "none"}} id="cartIcon" className="nav-link p-0 align-self-end border-0 rounded-circle" data-bs-toggle="modal" data-bs-target="#shoppingCart">
                 <div className="d-flex flex-column align-items-center">
                     <p className="m-0">View Cart</p>
                     <span className="badge bg-danger mb-1" style={{display: props.cart.length === 0 ? "none" : "block"}}>{findQuantity(props.cart)}</span>
                     <FontAwesomeIcon icon={faCartShopping} size="2x"/>
                 </div>
-            </a>
+            </button>
+
+            {/* Modal */}
             <div className="modal fade" id="shoppingCart" tabIndex="-1" aria-labelledby="" aria-hidden="true">
                 <div className="modal-dialog modal-xl modal-fullscreen-lg-down row">
                     <div className="modal-content">
@@ -116,7 +121,6 @@ export default function ShoppingCart(props) {
                                                                 <img src={plus} alt="plus" style={{ width: .5 + "em" }}/>
                                                             </button>
                                                         </div>
-                                                        {/* <input type="number" name="quantity" value={item.quantity} onChange={handleQuantityChange} /> */}
                                                     </td>
                                                     <td className="align-middle col-2">${(item.attributes.price / 100).toFixed(2)}</td>
                                                     <td className="align-middle col-2">${calcItemTotal(item)}</td>

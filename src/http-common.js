@@ -14,4 +14,11 @@ const createCheckout = axios.create({
     },
 })
 
-export {http, createCheckout};
+const dashboard = axios.create({
+    baseURL: "http://localhost:5000/api/v1/store-items/dashboard",
+    headers: {
+        "Content-type": "multipart/form-data"
+    }
+})
+
+export {http, createCheckout, dashboard};

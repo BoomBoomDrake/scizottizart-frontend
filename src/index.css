@@ -24,6 +24,10 @@ h1 {
     background-color: #f6e7d8;
 }
 
+#emailIcon {
+    background-color: #f6e7d8;
+}
+
 @media screen and (max-width: 992px) {
     nav {
         background-color: transparent;

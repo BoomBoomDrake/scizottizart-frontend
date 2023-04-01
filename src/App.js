@@ -11,6 +11,8 @@ import Dashboard from "./components/Dashboard"
 import ItemDataService from "./services/item.js";
 import DBAddItem from "./components/DBAddItem";
 import DBSearchResults from "./components/DBSearchResults";
+import Success from "./components/Success";
+import Cancel from "./components/Cancel";
 
 function App() {
   const [cart, setCart] = React.useState([])
@@ -209,6 +211,14 @@ function App() {
         {
           path: "/celebrities",
           element: <CategoryView category={celebrities} addToCart={addToCart}/>,
+        },
+        {
+          path: "/success",
+          element: <Success />,
+        },
+        {
+          path: "/cancel",
+          element: <Cancel />,
         },
       ]
     },

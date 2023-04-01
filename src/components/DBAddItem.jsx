@@ -2,14 +2,10 @@ import React from "react";
 
 export default function DBAddItem(props) {
 
-    const setSearchResults = props.setSearchResults
-    const find = props.find
-
     const [name, setName] = React.useState(null);
     const [file, setFile] = React.useState(null);
     const [category, setCategory] = React.useState("Animals");
     const [addNewCategory, setAddNewCategory] = React.useState(false);
-    // const [mediums, setMediums] = React.useState(props.defaultMediums);
 
     const availableCategories = ["Animals", "Sketches", "Celebrities"];
     const [imgPreview, setImgPreview] = React.useState(null);
@@ -34,22 +30,6 @@ export default function DBAddItem(props) {
     const handleFormSubmission = async (event) => {
         event.preventDefault();
         props.addStoreItem({name: name, category: category, file: file});
-        // try {
-        //     const response = await props.addStoreItem({name: name, category: category, file: file})
-        //     if (!response.ok) {
-        //         throw new Error(`HTTP error: ${response.status}`);
-        //     }
-
-        //     const data = await response.json();
-        //     console.log(data);
-        // } catch (error) {
-        //     console.error(error);
-        // }
-            // .then((response) => {
-            //     let uploadedItem = find(response.data.insertedId, "_id")
-            //     setSearchResults(uploadedItem);
-            //     window.location("/dashboard")
-            // })
     }
 
 
@@ -63,7 +43,7 @@ export default function DBAddItem(props) {
                         </label>
                     </div>
                     <div className="">                    
-                        <img id="uploadedImage" src={imgPreview} alt="uploaded-image-preview" style={{width: 200 + "px", display: imgPreview ? "block" : "none"}} />
+                        <img id="uploadedImage" src={imgPreview} alt="uploaded-preview" style={{width: 200 + "px", display: imgPreview ? "block" : "none"}} />
                     </div>
                 </div>
                 <div className="mb-3">
@@ -83,16 +63,16 @@ export default function DBAddItem(props) {
                                     })}
                                 </select>
                             </label>
-                            <a className="btn" onClick={() => handleAddNewCategory(true)}>
+                            <button className="btn btn-dark mx-3" onClick={() => handleAddNewCategory(true)}>
                                 Enter New Category
-                            </a>
+                            </button>
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
                             <label htmlFor="category" className="form-label">Category:
                                 <input type="text" name="category" id="category" className="form-control" onChange={(event) => handleCategoryChange(event)}/>
                             </label>
-                            <button className="btn" onClick={() => handleAddNewCategory(false)}>
+                            <button className="btn btn-dark mx-3" onClick={() => handleAddNewCategory(false)}>
                                 Choose From Dropdown
                             </button>
                         </React.Fragment>

@@ -10,7 +10,7 @@ export default function DBItemCard(props) {
     const editCategoryRef = React.useRef();
 
     const [item, setItem] = React.useState(props.item);
-    const [mediums, setMediums] = React.useState(item.mediums);
+    const mediums = item.mediums
 
     const [editMode, setEditMode] = React.useState(false);
     const [uploadImg, setUploadImg] = React.useState(item.img);
@@ -25,7 +25,7 @@ export default function DBItemCard(props) {
             updateStoreItem(item);
             setUpdated(false);
         } else return
-    })
+    }, [updated, updateStoreItem, item])
 
     const handleDeleteItemClick = async (itemId) => {
         let response = window.confirm("Permanently Delete Item? This action cannot be undone.");

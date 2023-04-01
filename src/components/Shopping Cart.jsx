@@ -85,9 +85,9 @@ export default function ShoppingCart(props) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {props.cart.map((item) => {
+                                        {props.cart.map((item, ind) => {
                                             return (
-                                                <tr>
+                                                <tr key={ind}>
                                                     <th scope="row" className="col-2">
                                                         <img src={item.img} alt="" style={{ width: 6 + "em", height: 8 + "em" }}/>
                                                     </th>

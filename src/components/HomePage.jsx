@@ -64,10 +64,10 @@ export default function HomePage(props) {
                         </div>
                         <div className="text-center mx-3">
                             {/* TODO: Make email icon open contact form modal on click */}
-                            <a className="link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#contactForm">
+                            <button className="link-dark border-0" id="emailIcon" data-bs-toggle="modal" data-bs-target="#contactForm">
                                 <FontAwesomeIcon icon={faEnvelope} size="3x" />
                                 <h3>Email Me</h3>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -223,7 +223,7 @@ export default function HomePage(props) {
                 <div className="container border border-2 border-dark pb-5 mb-5">
                     <div className="row">
                         <div className="col-lg-6 text-center pt-5 mb-5" style={{height: 500 + "px", overflow: "hidden"}}>
-                            <img src={profile} alt="profile-image" style={{objectFit: "cover", overflow: "hidden"}} />
+                            <img src={profile} alt="profile" style={{objectFit: "cover", overflow: "hidden"}} />
                         </div>
                         <div className="col-lg-6 d-flex flex-column justify-content-center" >
                             <h1>Meet Scott Bianchi</h1>

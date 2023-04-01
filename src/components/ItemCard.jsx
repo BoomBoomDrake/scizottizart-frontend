@@ -1,5 +1,4 @@
 import React from "react";
-import {flushSync} from "react-dom";
 
 export default function ItemCard(props) {
 
@@ -11,9 +10,9 @@ export default function ItemCard(props) {
         quantity: 1,
     };
 
-    const initialMediumsArr = props.item.mediums
+    const mediums = props.item.mediums
 
-    const initialDisplayMediumState = initialMediumsArr[0]
+    const initialDisplayMediumState = mediums[0]
 
     const initialAttributesState = {
         material: "William Turner Paper",
@@ -22,10 +21,12 @@ export default function ItemCard(props) {
         price: 4000,
     }
 
+    const addToCart = props.addToCart;
+
     const [item, setItem] = React.useState(initialItemState);
     const [attributes, setAttributes] = React.useState(initialAttributesState);
     const [displayMedium, setDisplayMedium] = React.useState(initialDisplayMediumState);
-    const [mediums, setMediums] = React.useState(initialMediumsArr);
+    // const [mediums, setMediums] = React.useState(initialMediumsArr);
     const [displayFinish, setDisplayFinish] = React.useState(displayMedium.finishes[0]);
     const [sizeOptions, setSizeOptions] = React.useState(Object.keys(displayFinish.sizes));
 
@@ -38,16 +39,15 @@ export default function ItemCard(props) {
 
     React.useEffect(() => {
       if(added) {
-        props.addToCart(item);
-        resetItem();
+        addToCart(item);
         setAdded(false);
       } else return
-    }, [added])
+    }, [added, addToCart, item])
 
 
     const filterMediumsByName = (query) => {
-        const filtered = mediums.filter(medium => {
-            if (query === medium.name) return medium;
+        const filtered = mediums.filter((medium) => {
+            return query === medium.name
         })
 
         return filtered.length !== 0 ? filtered[0] : "error";
@@ -55,7 +55,7 @@ export default function ItemCard(props) {
 
     const filterFinishesByName = (query) => {
       const filtered = displayMedium.finishes.filter(finish => {
-        if (query === finish.name) return finish;
+        return query === finish.name;
       })
 
       return filtered.length !== 0 ? filtered[0] : "error";

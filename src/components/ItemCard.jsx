@@ -113,7 +113,7 @@ export default function ItemCard(props) {
 
     const handleQuantChange = (selectObject) => {
       let value = selectObject.value
-      setItem({...item, quantity: value});
+      setItem({...item, quantity: Number(value)});
     }
 
     const handleAddToCartClick = () => {

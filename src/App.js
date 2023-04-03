@@ -198,7 +198,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <HomePage categories={categories} />,
+          element: <HomePage />,
         },
         {
           path: "/animals",

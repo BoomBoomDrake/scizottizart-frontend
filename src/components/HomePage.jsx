@@ -7,10 +7,28 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 import logo from "../images/logo-nobg.png"
 import physicalExamples from "../images/physical-examples.png";
-import loader from "../images/spinning-circles.svg";
 import profile from "../images/profile.jpg"
 
+import baboon from "../images/preview-images/baboon.jpg";
+import jelly from "../images/preview-images/jelly.png";
+import nickeyDog from "../images/preview-images/nickeyDog.jpg";
+import owl from "../images/preview-images/Owl.png";
+import seahorse from "../images/preview-images/SeahorseKing.png";
+import crab from "../images/preview-images/TasmanianKIngCrab.png";
 
+import adam from "../images/preview-images/adamSCollage.jpg";
+import amelia from "../images/preview-images/Amelia.png";
+import batman from "../images/preview-images/batman.jpg";
+import brainSoup from "../images/preview-images/brainSoup.jpg";
+import eze from "../images/preview-images/eZE.jpg";
+import fightClub from "../images/preview-images/fightClub.jpg";
+
+import bobby from "../images/preview-images/bobbyBucheit.jpg";
+import bryan from "../images/preview-images/Bryan Danielson.png";
+import cardinals from "../images/preview-images/cardinalsBaseball.jpg";
+import bettyDavis from "../images/preview-images/Betty Davis.png";
+import bettyWhite from "../images/preview-images/bettyWhiteXmas.png";
+import biggums from "../images/preview-images/biggums.jpg";
 
 export default function HomePage(props) {
 
@@ -63,7 +81,6 @@ export default function HomePage(props) {
                             </a>
                         </div>
                         <div className="text-center mx-3">
-                            {/* TODO: Make email icon open contact form modal on click */}
                             <button className="link-dark border-0" id="emailIcon" data-bs-toggle="modal" data-bs-target="#contactForm">
                                 <FontAwesomeIcon icon={faEnvelope} size="3x" />
                                 <h3>Email Me</h3>
@@ -109,114 +126,157 @@ export default function HomePage(props) {
                             </ul>
                         </div>
                     </div>
-                    
-                    {props.categories.map((category) => { 
-                        return(props.categories.indexOf(category) % 2 === 0 ? 
-                        (
-                            <div key={props.categories.indexOf(category)} className="row my-3">
-                                <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
-                                    <h1>{category.length === 0 ? "loading" : category[1].category}</h1>
-                                    <Link to={category.length === 0 ? "#" : "/"+category[0].category}>View All</Link>
-                                </div>
-                                <div id={"category" + props.categories.indexOf(category) + "carouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
-                                    <div className="carousel-inner">
-                                        <div className="carousel-item active">
-                                            <div className="row">
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                    <img src={category.length === 0 ? loader : category[0].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                    <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[0].name}</h4>
-                                                </div>
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                    <img src={category.length === 0 ? loader : category[1].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                    <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[1].name}</h4>
-                                                </div>
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                    <img src={category.length === 0 ? loader : category[2].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                    <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[2].name}</h4>
-                                                </div>
-                                            </div>
+
+                    <div className="row my-3">
+                        <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+                            <h1>Animals</h1>
+                            <Link to={"/animals"}>View All</Link>
+                        </div>
+                        <div id={"animalCarouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
+                            <div className="carousel-inner">
+                                <div className="carousel-item active">
+                                    <div className="row">
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={baboon} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Baboon</h4>
                                         </div>
-                                        <div className="carousel-item">
-                                            <div className="row">
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                    <img src={category.length === 0 ? loader : category[3].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                    <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[3].name}</h4>
-                                                </div>
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                    <img src={category.length === 0 ? loader : category[4].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                    <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[4].name}</h4>
-                                                </div>
-                                                <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                    <img src={category.length === 0 ? loader : category[5].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                    <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[5].name}</h4>
-                                                </div>
-                                            </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={jelly} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Jelly</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={nickeyDog} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Nickey</h4>
                                         </div>
                                     </div>
-                                    <button className="carousel-control-prev" type="button" data-bs-target={"#category" + props.categories.indexOf(category) + "carouselControl"} data-bs-slide="prev">
-                                        <span className="carousel-control-prev-icon me-5" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Previous</span>
-                                    </button>
-                                    <button className="carousel-control-next" type="button" data-bs-target={"#category" + props.categories.indexOf(category) + "carouselControl"} data-bs-slide="next">
-                                        <span className="carousel-control-next-icon ms-5" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Next</span>
-                                    </button>
+                                </div>
+                                <div className="carousel-item">
+                                    <div className="row">
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={owl} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Owl</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={seahorse} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Seahorse King</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={crab} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Tasmanian King Crab</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        ) : (
-                                <div key={props.categories.indexOf(category)} className="row my-3">
-                                    <div id={"category" + props.categories.indexOf(category) + "carouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
-                                        <div className="carousel-inner">
-                                            <div className="carousel-item active">
-                                                <div className="row">
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                        <img src={category.length === 0 ? loader : category[0].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                        <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[0].name}</h4>
-                                                    </div>
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                        <img src={category.length === 0 ? loader : category[1].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                        <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[1].name}</h4>
-                                                    </div>
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                        <img src={category.length === 0 ? loader : category[2].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                        <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[2].name}</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="carousel-item">
-                                                <div className="row">
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                        <img src={category.length === 0 ? loader : category[3].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                        <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[3].name}</h4>
-                                                    </div>
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                        <img src={category.length === 0 ? loader : category[4].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                        <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[4].name}</h4>
-                                                    </div>
-                                                    <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
-                                                        <img src={category.length === 0 ? loader : category[5].img} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
-                                                        <h4 className="text-center my-2">{category.length === 0 ? "loading" : category[5].name}</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <button className="carousel-control-prev" type="button" data-bs-target={"#animalCarouselControl"} data-bs-slide="prev">
+                                <span className="carousel-control-prev-icon me-5" aria-hidden="true"></span>
+                                <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button className="carousel-control-next" type="button" data-bs-target={"#animalCarouselControl"} data-bs-slide="next">
+                                <span className="carousel-control-next-icon ms-5" aria-hidden="true"></span>
+                                <span className="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="row my-3">
+                        <div id={"sketchesCarouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
+                            <div className="carousel-inner">
+                                <div className="carousel-item active">
+                                    <div className="row">
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={adam} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Adam S. Collage</h4>
                                         </div>
-                                        <button className="carousel-control-prev" type="button" data-bs-target={"#category" + props.categories.indexOf(category) + "carouselControl"} data-bs-slide="prev">
-                                            <span className="carousel-control-prev-icon me-5" aria-hidden="true"></span>
-                                            <span className="visually-hidden">Previous</span>
-                                        </button>
-                                        <button className="carousel-control-next" type="button" data-bs-target={"#category" + props.categories.indexOf(category) + "carouselControl"} data-bs-slide="next">
-                                            <span className="carousel-control-next-icon ms-5" aria-hidden="true"></span>
-                                            <span className="visually-hidden">Next</span>
-                                        </button>
-                                    </div>
-                                    <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
-                                        <h1>{category.length === 0 ? "loading" : category[1].category}</h1>
-                                        <Link to={category.length === 0 ? "#" : "/"+category[0].category}>View All</Link>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={amelia} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Amelia</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={batman} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Batman</h4>
+                                        </div>
                                     </div>
                                 </div>
-                            )
-                        )
-                    })}
+                                <div className="carousel-item">
+                                    <div className="row">
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={brainSoup} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Brain Soup</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={eze} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">E-Z-E</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={fightClub} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Fight Club</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="carousel-control-prev" type="button" data-bs-target={"#sketchesCarouselControl"} data-bs-slide="prev">
+                                <span className="carousel-control-prev-icon me-5" aria-hidden="true"></span>
+                                <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button className="carousel-control-next" type="button" data-bs-target={"#sketchesCarouselControl"} data-bs-slide="next">
+                                <span className="carousel-control-next-icon ms-5" aria-hidden="true"></span>
+                                <span className="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+                            <h1>Sketches</h1>
+                            <Link to={"/sketches"}>View All</Link>
+                        </div>
+                    </div>
+                    <div className="row my-3">
+                        <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+                            <h1>Celebrities</h1>
+                            <Link to={"/celebrities"}>View All</Link>
+                        </div>
+                        <div id={"celebritiesCarouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
+                            <div className="carousel-inner">
+                                <div className="carousel-item active">
+                                    <div className="row">
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={bobby} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Bobby Bucheit</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={bryan} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Bryan Danielson</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={cardinals} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Cardinals Baseball</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="carousel-item">
+                                    <div className="row">
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={bettyDavis} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Betty Davis</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={bettyWhite} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Betty White X-Mas</h4>
+                                        </div>
+                                        <div className="container d-flex flex-column justify-content-between col-4 mb-3" style={{height: 400 + "px"}}>
+                                            <img src={biggums} className=" d-block mx-auto img-fluid mt-5" alt="preview" />
+                                            <h4 className="text-center my-2">Tyrone Biggums</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="carousel-control-prev" type="button" data-bs-target={"#celebritiesCarouselControl"} data-bs-slide="prev">
+                                <span className="carousel-control-prev-icon me-5" aria-hidden="true"></span>
+                                <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button className="carousel-control-next" type="button" data-bs-target={"#celebritiesCarouselControl"} data-bs-slide="next">
+                                <span className="carousel-control-next-icon ms-5" aria-hidden="true"></span>
+                                <span className="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <span ref={aboutTargetRef} className="spacer d-block"></span>
                 <h1>about me</h1>

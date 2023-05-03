@@ -6,7 +6,7 @@ export default function Success() {
 
     React.useEffect(() => {
         setTimeout(() => {
-            window.location.replace("http://localhost:3000/");
+            window.location.replace("http://scizottizart.com/");
         }, 5000)
     })
 

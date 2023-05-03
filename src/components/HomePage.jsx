@@ -178,6 +178,10 @@ export default function HomePage(props) {
                         </div>
                     </div>
                     <div className="row my-3">
+                        <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+                            <h1>Sketches</h1>
+                            <Link to={"/sketches"}>View All</Link>
+                        </div>
                         <div id={"sketchesCarouselControl"} className="carousel slide col-lg-8 px-5" data-bs-ride="carousel">
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
@@ -221,10 +225,6 @@ export default function HomePage(props) {
                                 <span className="carousel-control-next-icon ms-5" aria-hidden="true"></span>
                                 <span className="visually-hidden">Next</span>
                             </button>
-                        </div>
-                        <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center">
-                            <h1>Sketches</h1>
-                            <Link to={"/sketches"}>View All</Link>
                         </div>
                     </div>
                     <div className="row my-3">

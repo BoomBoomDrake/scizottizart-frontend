@@ -15,10 +15,10 @@ export default function ItemCard(props) {
     const initialDisplayMediumState = mediums[0]
 
     const initialAttributesState = {
-        material: "William Turner Paper",
-        finish: "None",
-        size: "5x9",
-        price: 4000,
+        material: initialDisplayMediumState.name,
+        finish: initialDisplayMediumState.finishes[0].name,
+        size: Object.keys(initialDisplayMediumState.finishes[0].sizes[0]),
+        price: Object.values(initialDisplayMediumState.finishes[0].sizes[0]),
     }
 
     const addToCart = props.addToCart;

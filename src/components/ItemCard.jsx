@@ -17,8 +17,8 @@ export default function ItemCard(props) {
     const initialAttributesState = {
         material: initialDisplayMediumState.name,
         finish: initialDisplayMediumState.finishes[0].name,
-        size: "5x7",
-        price: initialDisplayMediumState.finishes[0].sizes["5x7"],
+        size: Object.keys(initialDisplayMediumState.finishes[0].sizes)[0],
+        price: Object.values(initialDisplayMediumState.finishes[0].sizes)[0],
     }
 
     const addToCart = props.addToCart;
@@ -26,7 +26,6 @@ export default function ItemCard(props) {
     const [item, setItem] = React.useState(initialItemState);
     const [attributes, setAttributes] = React.useState(initialAttributesState);
     const [displayMedium, setDisplayMedium] = React.useState(initialDisplayMediumState);
-    // const [mediums, setMediums] = React.useState(initialMediumsArr);
     const [displayFinish, setDisplayFinish] = React.useState(displayMedium.finishes[0]);
     const [sizeOptions, setSizeOptions] = React.useState(Object.keys(displayFinish.sizes));
 

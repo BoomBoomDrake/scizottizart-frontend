@@ -106,9 +106,9 @@ export default function HomePage(props) {
                                 <div className="mb-3">
                                     <p>Available Sizes:</p>
                                     <ul>
-                                        <li>5" x 7"</li>
-                                        <li>9" x 12"</li>
-                                        <li>11" x 18"</li>
+                                        <li>5" x 7" (w/ Matte Finish: 8" x 10")</li>
+                                        <li>8" x 10" (w/ Matte Finish: 11" x 14")</li>
+                                        <li>11" x 17" (w/ Matte Finish: 18" x 24")</li>
                                     </ul>
                                 </div>
 
@@ -119,8 +119,9 @@ export default function HomePage(props) {
                                     <p>Available Sizes:</p>
                                     <ul>
                                         <li>5" x 7"</li>
-                                        <li>9" x 12"</li>
-                                        <li>11" x 18"</li>
+                                        <li>8" x 10"</li>
+                                        <li>11" x 17"</li>
+                                        <li>18" x 24"</li>
                                     </ul>
                                 </div>
                             </ul>

@@ -108,7 +108,7 @@ export default function HomePage(props) {
                                     <ul>
                                         <li>5" x 7" (w/ Matte Finish: 8" x 10")</li>
                                         <li>8" x 10" (w/ Matte Finish: 11" x 14")</li>
-                                        <li>11" x 17" (w/ Matte Finish: 18" x 24")</li>
+                                        <li>11" x 17" (w/ Matte Finish: 16" x 20")</li>
                                     </ul>
                                 </div>
 

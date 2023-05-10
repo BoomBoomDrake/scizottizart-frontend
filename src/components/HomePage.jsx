@@ -6,7 +6,7 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 import logo from "../images/logo-nobg.png"
-import physicalExamples from "../images/physical-examples.png";
+import physicalExamples from "../images/works-jumbo.jpg";
 import profile from "../images/profile.jpg"
 
 import baboon from "../images/preview-images/baboon.jpg";

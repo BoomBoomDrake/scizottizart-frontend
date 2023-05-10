@@ -35,7 +35,7 @@ export default function DBAddItem(props) {
 
     return(
         <React.Fragment>
-            <form action="http://localhost:5000/api/v1/store-items/dashboard" method="POST" encType="multipart/form-data" id="imageForm" className="container-md border border-dark" onSubmit={(event) => handleFormSubmission(event)}>
+            <form action="" method="POST" encType="multipart/form-data" id="imageForm" className="container-md border border-dark" onSubmit={(event) => handleFormSubmission(event)}>
                 <div className="row g-3 mb-3">
                     <div className="col">
                         <label htmlFor="fileItem" className="form-label">Upload Image:
@@ -63,7 +63,7 @@ export default function DBAddItem(props) {
                                     })}
                                 </select>
                             </label>
-                            <button className="btn btn-dark mx-3" onClick={() => handleAddNewCategory(true)}>
+                            <button className="btn btn-dark mx-3" type="button" onClick={() => handleAddNewCategory(true)}>
                                 Enter New Category
                             </button>
                         </React.Fragment>
@@ -72,7 +72,7 @@ export default function DBAddItem(props) {
                             <label htmlFor="category" className="form-label">Category:
                                 <input type="text" name="category" id="category" className="form-control" onChange={(event) => handleCategoryChange(event)}/>
                             </label>
-                            <button className="btn btn-dark mx-3" onClick={() => handleAddNewCategory(false)}>
+                            <button className="btn btn-dark mx-3" type="button" onClick={() => handleAddNewCategory(false)}>
                                 Choose From Dropdown
                             </button>
                         </React.Fragment>
